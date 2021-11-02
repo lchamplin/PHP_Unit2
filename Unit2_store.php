@@ -74,6 +74,6 @@
         var optionSelected = $("option:selected", this);
         var valueSelected = optionSelected.val();
     $('#picture').attr("src", "images/"+valueSelected);
-    $('#stock_text').text("Stock" + optionSelected.dataset.stock);
+    $('#stock_text').text("Stock" + optionSelected.data("stock"));
 });
 </script>
