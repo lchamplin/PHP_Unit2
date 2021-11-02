@@ -26,7 +26,7 @@ legend {
         float: right;
         display: inline;
         width: 100%;
-        height: 75%;
+        height: fit-content;
         background-color: pink;
         padding: 5px;
         border: 0.25vw blue dashed;

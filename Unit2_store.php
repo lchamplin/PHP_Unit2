@@ -81,7 +81,7 @@
     }
     else if (stock < 5){
         $('#stock_text').text("Only "+stock+" left in stock!")
-        $('#stock_text').css('color', 'pink');
+        $('#stock_text').css('color', 'blue');
     }
 });
 </script>
