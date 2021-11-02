@@ -1,9 +1,6 @@
 <?php include 'Unit2_header.php';?>
-<?php include 'Unit2_header.php';?>
 <?php include 'Unit2_database.php';?>
 
-
-?>
 
 
 <html>
@@ -62,8 +59,10 @@
 
 </form>
 <div class="picture">
-        <p>Select a product to see it here</p>
+        <p id="pic_text">Select a product to see it here</p>
         <img id="picture">
+        <p id="stock_text"></p>
+
 </div>
 </body>
 </html>
@@ -73,7 +72,9 @@
 <script>
      $('select').on('change', function (e) {
         var optionSelected = $("option:selected", this);
-        var valueSelected = optionSelected.attr("id");
-    $('#picture').attr("src", "images/"+valueSelected+".jpg");
+        var valueSelected = optionSelected.val();
+    $('#picture').attr("src", "images/"+valueSelected);
+    $('#pic_text').hide();
+    $('#stock_text').text(optionSelected.dataset.data-stock);
 });
 </script>
