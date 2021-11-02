@@ -35,9 +35,14 @@
                 <br>
                 <select name="products" required>
                         <option value="" disabled selected hidden>Choose a product*</option>
-                        <option id="gummy_bears" value="Gummy Bears-5" onclick=showImage(value)>Gummy Bears - $5</option>
+                        <?php if ($Product): ?>
+                                <?php foreach($Product as $row): ?>
+                                        <option value=<?=$row['image_name']?> data-stock=<?=$row['in_stock']?> > <?=$row['product_name']?> <?=$row['price']?> </option>
+                                <?php endforeach?>
+                        <?php endif?>
+                        <!-- <option id="gummy_bears" value="Gummy Bears-5" onclick=showImage(value)>Gummy Bears - $5</option>
                         <option id="chocolates" value="Chocolates-3">Chocolates - $3</option>
-                        <option id="caramels" value="Caramels-8">Caramels - $8</option>
+                        <option id="caramels" value="Caramels-8">Caramels - $8</option> -->
                 </select>
                 <br>
                 Quantity: * <input type="number" name="quantity" min=1 max=100  value=1 required><br>
