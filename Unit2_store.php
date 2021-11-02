@@ -76,7 +76,7 @@
     $('#picture').attr("src", "images/"+valueSelected);
     stock = optionSelected.data("stock");
     if (stock == 0){
-        $('#stock_text').text(OUT OF STOCK);
+        $('#stock_text').text("OUT OF STOCK");
         $('#stock_text').css('color', 'red');
     }
     else if (stock < 5){
