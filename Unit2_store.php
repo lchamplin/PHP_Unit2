@@ -76,10 +76,12 @@
     $('#picture').attr("src", "images/"+valueSelected);
     stock = optionSelected.data("stock");
     if (stock == 0){
-        $('#stock_text').text(OUT OF STOCK).css('color', 'red');
+        $('#stock_text').text(OUT OF STOCK);
+        $('#stock_text').css('color', 'red');
     }
     else if (stock < 5){
-        $('#stock_text').text("Only "+stock+" left in stock!").css('color', 'pink');
+        $('#stock_text').text("Only "+stock+" left in stock!")
+        $('#stock_text').css('color', 'pink');
     }
 });
 </script>
