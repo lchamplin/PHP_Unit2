@@ -16,4 +16,9 @@ $sql = "SELECT * FROM Customer";
 $result = mysqli_query($conn, $sql);
 return $result;
 }
+function getProducts($conn){
+$sql = "SELECT * FROM Product";
+$result = mysqli_query($conn, $sql);
+return $result;
+}
 ?> 

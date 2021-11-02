@@ -1,5 +1,6 @@
- <?php include 'Unit2_header.php';?>
-<?php
+<?php include 'Unit2_header.php';?>
+<?php include 'Unit2_header.php';?>
+<?php include 'Unit2_database.php';?>
 
 
 ?>
@@ -35,6 +36,7 @@
                 <br>
                 <select name="products" required>
                         <option value="" disabled selected hidden>Choose a product*</option>
+                        <?php $Product = getProducts(getConnection()); ?>
                         <?php if ($Product): ?>
                                 <?php foreach($Product as $row): ?>
                                         <option value=<?=$row['image_name']?> data-stock=<?=$row['in_stock']?> > <?=$row['product_name']?> <?=$row['price']?> </option>
