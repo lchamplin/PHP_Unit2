@@ -39,10 +39,11 @@ function findProductById($conn, $productId) {
 }
 
 function findCustomer($conn, $email) {
-        $query = "select * from customer where email = ?";
+        $query = "select * from Customer where email = ?";
         $stmt = $conn->prepare( $query );
-        $stmt->bind_param("s", $email);
+        $stmt->bind_param("i", $email);
         $stmt->execute();
+        $result = $stmt->get_result(); // get the mysqli result
         if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 return $row;
