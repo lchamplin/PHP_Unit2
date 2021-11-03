@@ -3,6 +3,12 @@
 
 
 <?php
+function debug_to_console($data) {
+	$output = $data;
+	if (is_array($output))
+		$output = implode(',', $output);
+	echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
 // $product = $_POST["product"];
 // $quantity = floatval($_POST["quantity"]);
 // $price = floatval(explode("-", $_POST["product"])[1]);
@@ -17,7 +23,12 @@
 $conn = getConnection();
 $newCust = findCustomer($conn, $_POST['email']);
 
+debug_to_console($newCust);
+
 $product = findProductById($conn, $_POST['product']);
+
+debug_to_console($product);
+
 $product_name = $product['product_name'];
 $price = $product['price'];
 $subtotal = $price * $_POST["quantity"];
@@ -26,6 +37,7 @@ $tax_price = $subtotal * $tax;
 $donation = ceil($tax_price);
 $timestamp = 0.0;
 $donation_text = "";
+
 if($_POST["donate"]){
         $donation_text = "Total with donation: $" . $donation;
 }
