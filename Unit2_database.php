@@ -22,23 +22,23 @@ $result = mysqli_query($conn, $sql);
 return $result;
 }
 
-function findProductById($conn, $productId) {
-        $query = "select * from Product where id = ?";
-        $stmt = $conn->prepare( $query );
-        $stmt->bind_param("i", $productId);
-         
-        $stmt->execute();
-        $result = $stmt->get_result(); // get the mysqli result
-        if ($result->num_rows > 0) {
-                $row =  $result->fetch_assoc();
-                return $row;
-        }
-        else {
-                return 0;
-        }
-}
+// function findProductById($conn, $productId) {
+//         $query = "select * from Product where id = ?";
+//         $stmt = $conn->prepare( $query );
+//         $stmt->bind_param("i", $productId);
+//          
+//         $stmt->execute();
+//         $result = $stmt->get_result(); // get the mysqli result
+//         if ($result->num_rows > 0) {
+//                 $row =  $result->fetch_assoc();
+//                 return $row;
+//         }
+//         else {
+//                 return 0;
+//         }
+// }
 
-function insertOrder($conn, $productId, $customerId, $quantity, )
+// function insertOrder($conn, $productId, $customerId, $quantity, )
 
 
 
