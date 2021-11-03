@@ -72,7 +72,7 @@
 <script>
      $('select').on('change', function (e) {
         var optionSelected = $("option:selected", this);
-        var arr = optionSelected.data("image_stock").split(',');
+        var arr = optionSelected.data("image_stock").toString().split(',');
     $('#picture').attr("src", "images/"+arr[0]);
     stock = parseInt(arr[1]);
     if (stock == 0){
