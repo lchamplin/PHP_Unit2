@@ -32,14 +32,16 @@
    <fieldset class="product">
     <legend>Product</legend>
                 <br>
-                <select name="product" required>
+                <select name="product" required onchange="showImage()">
                         <option value="" disabled selected hidden>Choose a product*</option>
                         <?php $Product = getProducts(getConnection()); ?>
                         <?php if ($Product): ?>
                                 <?php foreach($Product as $row): ?>
-                                        <!-- -->
-                                        <option value=<?=$row['id']?> data-stock=<?=$row['in_stock']?>  data-image=<?=$row['image_name']?>  > <?=$row['product_name']?> - $<?=$row['price']?> </option>
-                                <?php endforeach?>
+                                        <option value = <?= $row['id'] ?>
+                                         data-image="<?= $row['image_name'] ?>"
+                                         data-qty="<?= $row['in_stock'] ?>">
+                                        <?= $row['product_name'] ?> - <?= $row['price'] ?>
+</option>                                <?php endforeach?>
                         <?php endif?>
                         <!-- <option id="gummy_bears" value="Gummy Bears-5" onclick=showImage(value)>Gummy Bears - $5</option>
                         <option id="chocolates" value="Chocolates-3">Chocolates - $3</option>
@@ -72,20 +74,20 @@
  <?php include 'Unit2_footer.php';?>
 
 <script>
-     $('select').on('change', function (e) {
-        var optionSelected = $("option:selected", this);
-    $('#picture').attr("src", "images/"+optionSelected.data('image'));
-    stock = optionSelected.data('stock');
-    if (stock == 0){
-        $('#stock_text').text("OUT OF STOCK");
-        $('#stock_text').css('color', 'red');
-    }
-    else if (stock < 5){
-        $('#stock_text').text("Only "+stock+" left in stock!");
-        $('#stock_text').css('color', 'blue');
-    }
-    else{
-        $('#stock_text').text("");
-    }
+     function showImage() {
+        var imgName = $("#product option:selected").attr('data-image');
+        var stock = $("#product option:selected").attr('data-qty');
+        $('#picture').attr("src", "images/"+imgName);
+        if (stock == 0){
+                $('#stock_text').text("OUT OF STOCK");
+                $('#stock_text').css('color', 'red');
+        }
+        else if (stock < 5){
+                $('#stock_text').text("Only "+stock+" left in stock!");
+                $('#stock_text').css('color', 'blue');
+        }
+        else{
+                $('#stock_text').text("");
+        }
 });
 </script>
