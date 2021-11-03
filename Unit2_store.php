@@ -37,10 +37,10 @@
                         <?php $Product = getProducts(getConnection()); ?>
                         <?php if ($Product): ?>
                                 <?php foreach($Product as $row): ?>
-                                        <option 
+                                        <option  value = <?= $row['id']?>
                                          data-image="<?= $row['image_name'] ?>"
                                          data-qty="<?= $row['in_stock'] ?>" 
-                                        value = <?= $row['id']?> >
+                                        >
                                         <?= $row['product_name'] ?> - <?= $row['price'] ?>
                                         </option>                                
                                 <?php endforeach?>
