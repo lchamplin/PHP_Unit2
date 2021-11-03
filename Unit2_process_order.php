@@ -68,16 +68,16 @@ else{
 
 <p>Hello <?php echo $_POST["fname"]; ?> <?php echo $_POST["lname"]; ?>
 <?php
-if ($newCust) { 
+if ($newCust==0) { 
 	echo " - <em>Thank you for becoming a customer!</em></p>";
 } else { 
 	echo " - <em>Welcome back!</em></p>"; 
 }?>
 <p>We hope you enjoy your <?php echo $product_name?> candy!</p>
 <p>Order Details:</p>
-<p>	<?php echo $_POST["quantity"]?> @ <?php echo $price?> </p>
+<p>	<?php echo $_POST["quantity"]?> @ <?php echo $price?>:  <?php echo $subtotal?></p>
 <p>	Tax (3%): <?php echo $tax?> </p>
-<p>	Subtotal: <?php echo $tax_price?> </p>
+<p>	Subtotal: $<?php echo $tax_price?> </p>
 <p>	<?php echo $donation_text ?> </p>
 <p>We will send special offers to <?php echo $_POST['email']?><p>
 
