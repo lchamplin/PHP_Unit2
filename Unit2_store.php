@@ -70,9 +70,9 @@
  <?php include 'Unit2_footer.php';?>
 
 <script>
-     console.log(optionSelected.data);
      $('select').on('change', function (e) {
         var optionSelected = $("option:selected", this);
+     console.log(optionSelected.data);
     $('#picture').attr("src", "images/"+optionSelected.data("image_name"));
     stock = optionSelected.data("stock");
     if (stock == 0){
