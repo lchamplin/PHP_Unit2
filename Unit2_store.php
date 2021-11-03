@@ -72,7 +72,7 @@
 <script>
      $('select').on('change', function (e) {
         var optionSelected = $("option:selected", this);
-     console.log(optionSelected.data);
+     console.log(optionSelected.data("stock"));
     $('#picture').attr("src", "images/"+optionSelected.data("image_name"));
     stock = optionSelected.data("stock");
     if (stock == 0){
