@@ -16,6 +16,28 @@
 // }
 $conn = getConnection();
 $newCust = findCustomer($conn, $_POST['email']);
+
+$product = findProductById($conn, $_POST['product']);
+$product_name = $product['product_name'];
+$price = $product['price'];
+$subtotal = $price * $quantity;
+$tax = $subtotal * 0.03;
+$tax_price = $subtotal * $tax;
+$donation = ceil($tax_price);
+$timestamp = 0.0;
+$donation_text = "";
+if($_POST["donate"]){
+        $donation_text = "Total with donation: $" . $donation;
+}
+
+if ($newCust) {
+	addOrder($conn, $newCust['id'], $_POST['product'], $_POST["quantity"], $price, 0.03, $donation, $timestamp);
+}
+else{
+	addCustomer($conn, $_POST['fname'], $_POST['lname'], $_POST['email']);
+	$cust = findCustomer($conn, $_POST['email']);
+	addOrder($conn, $cust['id'], $_POST['product'], $_POST["quantity"], $price, 0.03, $donation, $timestamp);
+}
 ?>
 
 
@@ -36,18 +58,18 @@ $newCust = findCustomer($conn, $_POST['email']);
 <p>Hello <?php echo $_POST["fname"]; ?> <?php echo $_POST["lname"]; ?>
 <?php
 if ($newCust) { 
-	echo " - <em>Thank you for becoming a customer!</em></p>"; 
+	echo " - <em>Thank you for becoming a customer!</em></p>";
 } else { 
 	echo " - <em>Welcome back!</em></p>"; 
 }?>
-<p>We hope you enjoy your PRODUCT candy!</p>
+<p>We hope you enjoy your <?php $product_name?> candy!</p>
 <p>Order Details:
-	QUANTITY @ $PRICE: 
-	Tax (3%): 
-	Subtotal:
-	Total:/Total with donation(thank you!):
+<?php $_POST["quantity"]?> @ <?php $price?>
+	Tax (3%): <?php $tax?>
+	Subtotal: <?php $tax_price?>
+	<?php echo $donation_text ?>
 </p>
-<p>We will send special offers to EMAIL<p>
+<p>We will send special offers to <?php $_POST['email']?><p>
 
 <!-- <p>Thank you for your order, <?php echo $_POST["fname"]; ?> <?php echo $_POST["lname"]; ?> (<?php echo $_POST["email"]; ?>). </p>
 <p>You have selected <?php echo $_POST["quantity"]; ?>  <?php echo $product;?> @ $<?php echo $price;?></p>

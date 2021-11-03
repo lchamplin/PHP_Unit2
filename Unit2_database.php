@@ -41,7 +41,7 @@ function findProductById($conn, $productId) {
 function findCustomer($conn, $email) {
         $query = "select * from Customer where email = ?";
         $stmt = $conn->prepare( $query );
-        $stmt->bind_param("i", $email);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result(); // get the mysqli result
         if ($result->num_rows > 0) {
@@ -51,6 +51,22 @@ function findCustomer($conn, $email) {
         else {
                 return 0;
         }
+}
+
+function addOrder($conn, $custId, $productId, $qty, $price, $tax, $donation, $timestamp) {
+        $query = "insert into Orders (product_id, customer_id, quantity, price, tax, donation, timestamp) values (?,?,?,?,?,?,?)";
+        $stmt = $conn->prepare( $query );
+        $stmt->bind_param("iiidddi", $productId, $custId, $qty, $price, $tax, $donation, $timestamp);
+        $stmt->execute();
+        $stmt->close();
+}
+
+function addCustomer($conn, $first, $last, $email) {
+        $query = "insert into Customer (first_name, last_name, email) values (?,?,?)";
+        $stmt = $conn->prepare( $query );
+        $stmt->bind_param("sss", $first, $last, $email);
+        $stmt->execute();
+        $stmt->close();
 }
 
 ?> 
