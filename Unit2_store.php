@@ -36,7 +36,7 @@
                         <?php $Product = getProducts(getConnection()); ?>
                         <?php if ($Product): ?>
                                 <?php foreach($Product as $row): ?>
-                                        <option value=<?=$row['id']?> data-stock=<?=$row['in_stock']?> data-image_name=<?=$row['image_name']?>  > <?=$row['product_name']?> - $<?=$row['price']?> </option>
+                                        <option onclick="showDetails(this)" value=<?=$row['id']?> data-stock=<?=$row['in_stock']?> data-image_name=<?=$row['image_name']?>  > <?=$row['product_name']?> - $<?=$row['price']?> </option>
                                 <?php endforeach?>
                         <?php endif?>
                         <!-- <option id="gummy_bears" value="Gummy Bears-5" onclick=showImage(value)>Gummy Bears - $5</option>
@@ -70,8 +70,8 @@
  <?php include 'Unit2_footer.php';?>
 
 <script>
-     $('select').on('change', function (e) {
-        var optionSelected = $("option:selected", this);
+function showDetails(optionSelected){
+     
     $('#picture').attr("src", "images/"+optionSelected.getAttribute("data-image_name"));
     stock = optionSelected.getAttribute("data-stock");
      console.log(stock);
@@ -85,6 +85,7 @@
     }
     else{
         $('#stock_text').text("");
-    }
-});
+    }   
+}
+
 </script>
