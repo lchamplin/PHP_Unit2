@@ -31,12 +31,12 @@
    <fieldset class="product">
     <legend>Product</legend>
                 <br>
-                <select name="products" required>
+                <select name="product" required>
                         <option value="" disabled selected hidden>Choose a product*</option>
                         <?php $Product = getProducts(getConnection()); ?>
                         <?php if ($Product): ?>
                                 <?php foreach($Product as $row): ?>
-                                        <option data-stock=<?=$row['in_stock']?> value=<?=$row['id']?> data-image_name=<?$row['image_name']?>  > <?=$row['product_name']?> - $<?=$row['price']?> </option>
+                                        <option  value=<?=$row['id']?> data-stock=<?=$row['in_stock']?> data-image_name=<?=$row['image_name']?>  > <?=$row['product_name']?> - $<?=$row['price']?> </option>
                                 <?php endforeach?>
                         <?php endif?>
                         <!-- <option id="gummy_bears" value="Gummy Bears-5" onclick=showImage(value)>Gummy Bears - $5</option>
