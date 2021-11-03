@@ -74,7 +74,7 @@
 <script>
      $('select').on('change', function (e) {
         var optionSelected = $("option:selected", this);
-    $('#picture').attr("src", "images/"+optionSelected.data("data-image_name"));
+    $('#picture').attr("src", "images/"+optionSelected.data("image_name"));
     stock = 3;
     if (stock == 0){
         $('#stock_text').text("OUT OF STOCK");
