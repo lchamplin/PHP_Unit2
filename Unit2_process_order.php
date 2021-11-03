@@ -23,7 +23,7 @@ function debug_to_console($data) {
 $conn = getConnection();
 $newCust = findCustomer($conn, $_POST['email']);
 
-debug_to_console($newCust);
+debug_to_console($_POST['product']);
 
 $product = findProductById($conn, $_POST['product']);
 
