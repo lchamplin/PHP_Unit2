@@ -40,7 +40,7 @@
                                         <option 
                                          data-image="<?= $row['image_name'] ?>"
                                          data-qty="<?= $row['in_stock'] ?>" 
-                                        value = <?= $row['id']>?> >
+                                        value = <?= $row['id']?> >
                                         <?= $row['product_name'] ?> - <?= $row['price'] ?>
                                         </option>                                
                                 <?php endforeach?>
