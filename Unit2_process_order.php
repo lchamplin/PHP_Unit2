@@ -14,7 +14,7 @@
 // if($_POST["donate"]){
 //         $donation = "Total with donation: $" . strval($round_price);
 // }
-
+$conn = getConnection();
 $newCust = findCustomer($conn, $_POST['email']);
 ?>
 
