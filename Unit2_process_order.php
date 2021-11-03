@@ -37,7 +37,11 @@ $donation = ceil($tax_price);
 $timestamp = 0.0;
 $donation_text = "";
 
-updateQuantity($conn, $_POST['product'], $_POST["quantity"]);
+$newQty = $product['in_stock'] - $_POST["quantity"];
+if ($newQty < 0) { // ensure no negative amounts
+$newQty = 0;
+}
+updateQuantity($conn, $_POST['product'], $newQty);
 
 if($_POST["donate"]){
         $donation_text = "Total with donation: $" . $donation;
