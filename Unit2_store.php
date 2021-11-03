@@ -71,7 +71,7 @@
 
 <script>
 function showDetails(optionSelected){
-     
+     alert("function");
     $('#picture').attr("src", "images/"+optionSelected.getAttribute("data-image_name"));
     stock = optionSelected.getAttribute("data-stock");
      console.log(stock);
