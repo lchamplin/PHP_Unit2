@@ -62,14 +62,14 @@ if ($newCust) {
 } else { 
 	echo " - <em>Welcome back!</em></p>"; 
 }?>
-<p>We hope you enjoy your <?php $product_name?> candy!</p>
+<p>We hope you enjoy your <?php echo $product_name?> candy!</p>
 <p>Order Details:
-<?php $_POST["quantity"]?> @ <?php $price?>
-	Tax (3%): <?php $tax?>
-	Subtotal: <?php $tax_price?>
+<?php echo $_POST["quantity"]?> @ <?php echo $price?>
+	Tax (3%): <?php echo $tax?>
+	Subtotal: <?php echo $tax_price?>
 	<?php echo $donation_text ?>
 </p>
-<p>We will send special offers to <?php $_POST['email']?><p>
+<p>We will send special offers to <?php echo $_POST['email']?><p>
 
 <!-- <p>Thank you for your order, <?php echo $_POST["fname"]; ?> <?php echo $_POST["lname"]; ?> (<?php echo $_POST["email"]; ?>). </p>
 <p>You have selected <?php echo $_POST["quantity"]; ?>  <?php echo $product;?> @ $<?php echo $price;?></p>
