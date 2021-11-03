@@ -37,8 +37,8 @@
                         <?php $Product = getProducts(getConnection()); ?>
                         <?php if ($Product): ?>
                                 <?php foreach($Product as $row): ?> 
-                                        <!-- data-image="<?= $row['image_name'] ?>" data-qty="<?= $row['in_stock'] ?>" -->
-                                        <option value = <?= $row['id']?> > <?= $row['product_name'] ?> - <?= $row['price'] ?> </option>                             
+                                        <!-- data-image="<?= $row['image_name'] ?>" data-qty="<?= $row['in_stock'] ?>" <?= $row['id']?>   -->
+                                        <option value = 1> <?= $row['product_name'] ?> - <?= $row['price'] ?> </option>                             
                                 <?php endforeach?>
                         <?php endif?>
                         <!-- <option id="gummy_bears" value="Gummy Bears-5" onclick=showImage(value)>Gummy Bears - $5</option>
