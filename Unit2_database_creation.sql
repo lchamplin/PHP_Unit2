@@ -5,14 +5,14 @@ DROP TABLE IF EXISTS Customer;
 DROP TABLE IF EXISTS Product;
 
 CREATE TABLE Customer (
-    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id AUTO_INCREMENT PRIMARY KEY,
     first_name varchar(255),
     last_name varchar(255),
     email varchar(255)
 );
 
 CREATE TABLE Product ( 
-    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id AUTO_INCREMENT PRIMARY KEY,
     product_name varchar(255), 
     image_name varchar(255), 
     price decimal(6, 2), 
@@ -20,7 +20,7 @@ CREATE TABLE Product (
 );
 
 CREATE TABLE Orders (
-    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id AUTO_INCREMENT PRIMARY KEY,
     product_id int REFERENCES Product(id),
     customer_id int REFERENCES Customer(id),
     quantity int, 
