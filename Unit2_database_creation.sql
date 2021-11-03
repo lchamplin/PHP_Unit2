@@ -5,29 +5,32 @@ DROP TABLE IF EXISTS Customer;
 DROP TABLE IF EXISTS Product;
 
 CREATE TABLE Customer (
-    id AUTO_INCREMENT PRIMARY KEY,
+    id int AUTO_INCREMENT,
     first_name varchar(255),
     last_name varchar(255),
-    email varchar(255)
+    email varchar(255),
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE Product ( 
-    id AUTO_INCREMENT PRIMARY KEY,
+    id int AUTO_INCREMENT,
     product_name varchar(255), 
     image_name varchar(255), 
     price decimal(6, 2), 
-    in_stock int 
+    in_stock int,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE Orders (
-    id AUTO_INCREMENT PRIMARY KEY,
+    id int AUTO_INCREMENT,
     product_id int REFERENCES Product(id),
     customer_id int REFERENCES Customer(id),
     quantity int, 
     price decimal(6, 2),
     tax decimal(6, 2),
     donation decimal(6, 2),
-    timestamp bigint
+    timestamp bigint,
+    PRIMARY KEY (id)
 );
 
 INSERT INTO Customer (first_name, last_name, email) VALUES('Mickey', 'Mouse', 'mmouse@mines.edu');
