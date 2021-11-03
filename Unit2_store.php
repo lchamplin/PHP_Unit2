@@ -36,7 +36,7 @@
                         <?php $Product = getProducts(getConnection()); ?>
                         <?php if ($Product): ?>
                                 <?php foreach($Product as $row): ?>
-                                        <option value=<?=$row['image_name']?> data-stock=<?=$row['in_stock']?> > <?=$row['product_name']?> - $<?=$row['price']?> </option>
+                                        <option value=<?=$row['id']?> data-image=<?$row['image_name']?> data-stock=<?=$row['in_stock']?> > <?=$row['product_name']?> - $<?=$row['price']?> </option>
                                 <?php endforeach?>
                         <?php endif?>
                         <!-- <option id="gummy_bears" value="Gummy Bears-5" onclick=showImage(value)>Gummy Bears - $5</option>
@@ -72,7 +72,7 @@
 <script>
      $('select').on('change', function (e) {
         var optionSelected = $("option:selected", this);
-        var valueSelected = optionSelected.val();
+        var valueSelected = optionSelected.data("image");
     $('#picture').attr("src", "images/"+valueSelected);
     stock = optionSelected.data("stock");
     if (stock == 0){
@@ -80,8 +80,11 @@
         $('#stock_text').css('color', 'red');
     }
     else if (stock < 5){
-        $('#stock_text').text("Only "+stock+" left in stock!")
+        $('#stock_text').text("Only "+stock+" left in stock!");
         $('#stock_text').css('color', 'blue');
+    }
+    else{
+        $('#stock_text').text("");
     }
 });
 </script>
