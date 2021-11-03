@@ -2,7 +2,7 @@
 
 
 <?php
-$product = explode("-", $_POST["product"])[0];
+$product = $_POST["product"];
 $quantity = floatval($_POST["quantity"]);
 $price = floatval(explode("-", $_POST["product"])[1]);
 $subtotal = $price * $quantity;
