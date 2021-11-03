@@ -41,7 +41,8 @@
                                          data-image="<?= $row['image_name'] ?>"
                                          data-qty="<?= $row['in_stock'] ?>">
                                         <?= $row['product_name'] ?> - <?= $row['price'] ?>
-</option>                                <?php endforeach?>
+                                        </option>                                
+                                <?php endforeach?>
                         <?php endif?>
                         <!-- <option id="gummy_bears" value="Gummy Bears-5" onclick=showImage(value)>Gummy Bears - $5</option>
                         <option id="chocolates" value="Chocolates-3">Chocolates - $3</option>
@@ -77,7 +78,8 @@
      function showImage() {
         var imgName = $("#product option:selected").attr('data-image');
         var stock = $("#product option:selected").attr('data-qty');
-        $('#picture').attr("src", "images/"+imgName);
+        console.log(imgName, stock);
+        $('#picture').attr("src", "images/"+imgName.toString());
         if (stock == 0){
                 $('#stock_text').text("OUT OF STOCK");
                 $('#stock_text').css('color', 'red');
