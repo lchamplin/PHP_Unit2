@@ -89,5 +89,5 @@
         else{
                 $('#stock_text').text("");
         }
-});
+}
 </script>
