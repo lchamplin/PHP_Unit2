@@ -30,6 +30,8 @@ $product = findProductById($conn, $_POST['product']);
 debug_to_console($product);
 
 $product_name = $product['product_name'];
+debug_to_console($product_name);
+
 $price = $product['price'];
 $subtotal = $price * $_POST["quantity"];
 $tax = $subtotal * 0.03;
