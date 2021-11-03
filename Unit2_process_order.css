@@ -47,3 +47,10 @@ a{
 .topnav a.active {
         color: white;
 }
+
+
+#receipt{
+        background-color: gold;
+        border: 0.25vw red dashed;
+        width: fit-content;      
+}

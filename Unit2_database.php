@@ -69,4 +69,12 @@ function addCustomer($conn, $first, $last, $email) {
         $stmt->close();
 }
 
+function updateQuantity($conn, $productId, $qty) {
+        $query = "update Product set quantity = greatest(0, quantity - (?)) where id = (?)";
+        $stmt = $conn->prepare( $query );
+        $stmt->bind_param("ii", $qty, $productId);
+        $stmt->execute();
+        $stmt->close();
+}
+
 ?> 

@@ -37,6 +37,8 @@ $donation = ceil($tax_price);
 $timestamp = 0.0;
 $donation_text = "";
 
+updateQuantity($conn, $_POST['product'], $_POST["quantity"]);
+
 if($_POST["donate"]){
         $donation_text = "Total with donation: $" . $donation;
 }
@@ -58,7 +60,7 @@ else{
 	<title>PHP Store</title>
 	<meta charset="UTF-8">
 	<meta name="author" content="Lauren Champlin">
-	<link rel="stylesheet" href="Unit2_common.css">
+	<link rel="stylesheet" href="Unit2_process_order.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
@@ -73,12 +75,14 @@ if ($newCust==0) {
 } else { 
 	echo " - <em>Welcome back!</em></p>"; 
 }?>
-<p>We hope you enjoy your <?php echo $product_name?> candy!</p>
-<p>Order Details:</p>
-<p>	<?php echo $_POST["quantity"]?> @ <?php echo $price?>:  <?php echo $subtotal?></p>
+<p>We hope you enjoy your <b><?php echo $product_name?></b> candy!</p>
+<section id="receipt">
+<p><b>Order Details:</b></p>
+<p>	<?php echo $_POST["quantity"]?> <?php echo $product_name?> @ <?php echo $price?>:  $<?php echo $subtotal?></p>
 <p>	Tax (3%): <?php echo $tax?> </p>
 <p>	Subtotal: $<?php echo $tax_price?> </p>
 <p>	<?php echo $donation_text ?> </p>
+</section>
 <p>We will send special offers to <?php echo $_POST['email']?><p>
 
 <!-- <p>Thank you for your order, <?php echo $_POST["fname"]; ?> <?php echo $_POST["lname"]; ?> (<?php echo $_POST["email"]; ?>). </p>
