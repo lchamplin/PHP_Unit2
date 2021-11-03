@@ -23,19 +23,16 @@ function debug_to_console($data) {
 $conn = getConnection();
 $newCust = findCustomer($conn, $_POST['email']);
 
-debug_to_console($_POST['product']);
+debug_to_console($newCust);
 
 $product = findProductById($conn, $_POST['product']);
 
-debug_to_console($product);
-
 $product_name = $product['product_name'];
-debug_to_console($product_name);
 
 $price = $product['price'];
 $subtotal = $price * $_POST["quantity"];
 $tax = $subtotal * 0.03;
-$tax_price = $subtotal * $tax;
+$tax_price = $subtotal + $tax;
 $donation = ceil($tax_price);
 $timestamp = 0.0;
 $donation_text = "";
@@ -77,12 +74,11 @@ if ($newCust) {
 	echo " - <em>Welcome back!</em></p>"; 
 }?>
 <p>We hope you enjoy your <?php echo $product_name?> candy!</p>
-<p>Order Details:
-<?php echo $_POST["quantity"]?> @ <?php echo $price?>
-	Tax (3%): <?php echo $tax?>
-	Subtotal: <?php echo $tax_price?>
-	<?php echo $donation_text ?>
-</p>
+<p>Order Details:</p>
+<p>	<?php echo $_POST["quantity"]?> @ <?php echo $price?> </p>
+<p>	Tax (3%): <?php echo $tax?> </p>
+<p>	Subtotal: <?php echo $tax_price?> </p>
+<p>	<?php echo $donation_text ?> </p>
 <p>We will send special offers to <?php echo $_POST['email']?><p>
 
 <!-- <p>Thank you for your order, <?php echo $_POST["fname"]; ?> <?php echo $_POST["lname"]; ?> (<?php echo $_POST["email"]; ?>). </p>
