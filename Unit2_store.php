@@ -32,14 +32,14 @@
    <fieldset class="product">
     <legend>Product</legend>
                 <br>
-                <select name="product" required onchange="showImage()">
+                <select id="product" name="product" required onchange="showImage()">
                         <option value="" disabled selected hidden>Choose a product*</option>
                         <?php $Product = getProducts(getConnection()); ?>
                         <?php if ($Product): ?>
                                 <?php foreach($Product as $row): ?>
                                         <option  value = <?= $row['id']?>
-                                         data-image="<?= $row['image_name'] ?>"
-                                         data-qty="<?= $row['in_stock'] ?>" 
+                                        data-image="<?= $row['image_name'] ?>"
+                                        data-qty="<?= $row['in_stock'] ?>" 
                                         >
                                         <?= $row['product_name'] ?> - <?= $row['price'] ?>
                                         </option>                                
@@ -76,21 +76,21 @@
  <?php include 'Unit2_footer.php';?>
 
 <script>
-     function showImage() {
-        var imgName = $("#product option:selected").attr('data-image');
-        var stock = $("#product option:selected").attr('data-qty');
-        console.log(imgName, stock);
-        $('#picture').attr("src", "images/"+imgName.toString());
-        if (stock == 0){
-                $('#stock_text').text("OUT OF STOCK");
-                $('#stock_text').css('color', 'red');
+        function showImage() {
+                var imgName = $("#product option:selected").attr('data-image');
+                var stock = $("#product option:selected").attr('data-qty');
+                console.log(imgName, stock);
+                $('#picture').attr("src", "images/"+imgName.toString());
+                if (stock == 0){
+                        $('#stock_text').text("OUT OF STOCK");
+                        $('#stock_text').css('color', 'red');
+                }
+                else if (stock < 5){
+                        $('#stock_text').text("Only "+stock+" left in stock!");
+                        $('#stock_text').css('color', 'blue');
+                }
+                else{
+                        $('#stock_text').text("");
+                        }
         }
-        else if (stock < 5){
-                $('#stock_text').text("Only "+stock+" left in stock!");
-                $('#stock_text').css('color', 'blue');
-        }
-        else{
-                $('#stock_text').text("");
-        }
-}
 </script>
