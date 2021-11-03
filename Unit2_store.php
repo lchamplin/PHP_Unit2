@@ -36,7 +36,7 @@
                         <?php $Product = getProducts(getConnection()); ?>
                         <?php if ($Product): ?>
                                 <?php foreach($Product as $row): ?>
-                                        <option value=<?=$row['id']?> data-image_stock=<?=$row['image_name']?>+<?=$row['in_stock']?>  > <?=$row['product_name']?> - $<?=$row['price']?> </option>
+                                        <option value=<?=$row['id']?> data-stock=<?=$row['in_stock']?> data-image_name=<?=$row['image_name']?>  > <?=$row['product_name']?> - $<?=$row['price']?> </option>
                                 <?php endforeach?>
                         <?php endif?>
                         <!-- <option id="gummy_bears" value="Gummy Bears-5" onclick=showImage(value)>Gummy Bears - $5</option>
@@ -72,9 +72,9 @@
 <script>
      $('select').on('change', function (e) {
         var optionSelected = $("option:selected", this);
-        console.log(optionSelected.data("image_stock"));
-    $('#picture').attr("src", "images/"+optionSelected.data("image_stock")[0]);
-    stock = optionSelected.data("image_stock")[1];
+    $('#picture').attr("src", "images/"+optionSelected.getAttribute("data-image_name"));
+    stock = optionSelected.getAttribute("data-stock");
+     console.log(stock);
     if (stock == 0){
         $('#stock_text').text("OUT OF STOCK");
         $('#stock_text').css('color', 'red');
@@ -88,8 +88,3 @@
     }
 });
 </script>
-
-
-
-
-
