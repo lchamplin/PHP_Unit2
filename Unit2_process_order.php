@@ -23,8 +23,6 @@ function debug_to_console($data) {
 $conn = getConnection();
 $newCust = findCustomer($conn, $_POST['email']);
 
-debug_to_console($newCust);
-
 $product = findProductById($conn, $_POST['product']);
 
 $product_name = $product['product_name'];
@@ -41,7 +39,8 @@ $newQty = $product['in_stock'] - $_POST["quantity"];
 if ($newQty < 0) { // ensure no negative amounts
 $newQty = 0;
 }
-debug_to_console($newQty);
+
+debug_to_console($_POST);
 
 updateQuantity($conn, $_POST['product'], $newQty);
 
