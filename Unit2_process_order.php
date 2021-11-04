@@ -41,6 +41,8 @@ $newQty = $product['in_stock'] - $_POST["quantity"];
 if ($newQty < 0) { // ensure no negative amounts
 $newQty = 0;
 }
+debug_to_console($newQty);
+
 updateQuantity($conn, $_POST['product'], $newQty);
 
 if($_POST["donate"]){
