@@ -33,15 +33,16 @@
    <fieldset class="product">
     <legend>Product</legend>
                 <br>
-   
+      
                 <select id="product" name="product" required onchange="showImage()">
-                <option disabled selected hidden>Choose a product *</option>
-                <?php $Product = getProducts(getConnection()); ?>
-                <?php if ($Product): ?>
+                        <option disabled selected hidden>Choose a product *</option>
+                        <?php $Product = getProducts(getConnection()); ?>
+                        <?php if ($Product): ?>
                         <?php foreach($Product as $row): ?>
                                 <option value = <?= $row['id']?> data-image="<?= $row['image_name'] ?>" data-qty="<?= $row['in_stock'] ?>" > <?= $row['product_name'] ?> - <?= $row['price'] ?> </option>
                         <?php endforeach?>
-                <?php endif?>
+                        <?php endif?>
+                        </select>
 
 
                 <br>
