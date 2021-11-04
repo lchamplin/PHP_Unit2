@@ -46,9 +46,9 @@ debug_to_console($_POST);
 updateQuantity($conn, $_POST['product'], $newQty);
 
 if($_POST["donate"]){
-	$donation = $total - $tax_price;
-        $donation_text = "Total with donation: $" . ($donation+$tax_price);
 	$total = ceil($tax_price);
+	$donation = $total - $tax_price;
+        $donation_text = "Total with donation: $" . $total;
 }
 
 if ($newCust != 0) {

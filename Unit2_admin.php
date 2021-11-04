@@ -22,6 +22,10 @@ $customers = getCustomerTable($conn);
 $orders = getOrdersTable($conn);
 $products = getProductTable($conn);
 echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<h3> Customers </h3>";
 echo "<table border='1'>
 <tr>
 <th>First name</th>
@@ -40,6 +44,7 @@ echo "</tr>";
 echo "</table>";
 
 echo "<br>";
+echo "<h3> Orders </h3>";
 
 echo "<table border='1'>
 <tr>
@@ -59,7 +64,7 @@ $customer = findCustomerById($conn, $row['customer_id']);
 $product = findProductById($conn, $row['product_id']);
 
 echo "<tr>";
-echo "<td>" . $customer['first_name'] . $customer['last_name'] . "</td>";
+echo "<td>" . $customer['first_name'] . " " . $customer['last_name'] . "</td>";
 echo "<td>" . $product['product_name'] . "</td>";
 echo "<td>" . date("Y-m-d h:i:sa", $row['timestamp']) . "</td>";
 echo "<td>" . $row['quantity'] . "</td>";
@@ -73,6 +78,7 @@ echo "</table>";
 
 
 echo "<br>";
+echo "<h3> Products </h3>";
 echo "<table border='1'>
 <tr>
 <th>Product</th>
