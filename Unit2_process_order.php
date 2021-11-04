@@ -34,7 +34,7 @@ $subtotal = $price * $_POST["quantity"];
 $tax = $subtotal * 0.03;
 $tax_price = $subtotal + $tax;
 $donation = ceil($tax_price);
-$timestamp = $_POST['timestamp'];
+$timestamp = $_POST["timestamp"];
 $donation_text = "";
 
 $newQty = $product['in_stock'] - $_POST["quantity"];

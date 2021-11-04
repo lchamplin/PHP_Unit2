@@ -57,7 +57,7 @@
                         <label for="No">No</label><br>
                 </span>
 </div>
-<input type="hidden" name="timestamp" value="<?php echo time(); ?>">
+        <input type="hidden" name="timestamp" value="<?php echo time(); ?>">
         <button type="submit">Purchase</button>
 </span>
 

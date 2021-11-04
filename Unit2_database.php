@@ -69,7 +69,7 @@ function findOrder($conn, $custId, $productId, $timestamp) {
 }
 
 function addOrder($conn, $custId, $productId, $qty, $price, $tax, $donation, $timestamp) {
-        if(findOrder($conm, $custId, $productId, $timestamp) != 0){
+        if(findOrder($conn, $custId, $productId, $timestamp) != 0){
                 $query = "insert into Orders (product_id, customer_id, quantity, price, tax, donation, timestamp) values (?,?,?,?,?,?,?)";
                 $stmt = $conn->prepare( $query );
                 $stmt->bind_param("iiidddi", $productId, $custId, $qty, $price, $tax, $donation, $timestamp);
