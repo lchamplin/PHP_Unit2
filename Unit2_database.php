@@ -60,22 +60,23 @@ function findOrder($conn, $custId, $productId, $timestamp) {
         $stmt->execute();
         $result = $stmt->get_result(); // get the mysqli result
         if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                return $row;
+                return true;
         }
         else {
-                return 0;
+                return false;
         }
 }
 
 function addOrder($conn, $custId, $productId, $qty, $price, $tax, $donation, $timestamp) {
-        if(findOrder($conn, $custId, $productId, $timestamp) != 0){
+        if(! findOrder($conn, $custId, $productId, $timestamp)){
                 $query = "insert into Orders (product_id, customer_id, quantity, price, tax, donation, timestamp) values (?,?,?,?,?,?,?)";
                 $stmt = $conn->prepare( $query );
                 $stmt->bind_param("iiidddi", $productId, $custId, $qty, $price, $tax, $donation, $timestamp);
                 $stmt->execute();
                 $stmt->close();
+                return true;
         }
+        return false;
 }
 
 function addCustomer($conn, $first, $last, $email) {
