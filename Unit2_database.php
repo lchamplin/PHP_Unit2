@@ -53,6 +53,21 @@ function findCustomer($conn, $email) {
         }
 }
 
+function findCustomerById($conn, $id) {
+        $query = "select * from Customer where id = ?";
+        $stmt = $conn->prepare( $query );
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result(); // get the mysqli result
+        if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                return $row;
+        }
+        else {
+                return 0;
+        }
+}
+
 function findOrder($conn, $custId, $productId, $timestamp) {
         $query = "select * from Orders where customer_id = ? and product_id = ? and timestamp = ?";
         $stmt = $conn->prepare( $query );
@@ -95,6 +110,22 @@ function updateQuantity($conn, $productId, $qty) {
 
 function getCustomerTable($conn) {
         $query = "select * from Customer";
+        $stmt = $conn->prepare( $query );
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+}
+
+function getOrdersTable($conn) {
+        $query = "select * from Orders";
+        $stmt = $conn->prepare( $query );
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+}
+
+function getProductTable($conn) {
+        $query = "select * from Product";
         $stmt = $conn->prepare( $query );
         $stmt->execute();
         $result = $stmt->get_result();
