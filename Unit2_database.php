@@ -70,7 +70,7 @@ function addCustomer($conn, $first, $last, $email) {
 }
 
 function updateQuantity($conn, $productId, $qty) {
-        $query = "update product set in_stock = ? where id = ?";
+        $query = "update Product set in_stock = ? where id = ?";
         $stmt = $conn->prepare( $query );
         $stmt->bind_param("ii", $qty, $productId);
         $stmt->execute();
