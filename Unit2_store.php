@@ -1,5 +1,6 @@
 <?php include 'Unit2_header.php';?>
 <?php include 'Unit2_database.php';?>
+<?php date_default_timezone_set("America/Denver");?>
 
 
 
@@ -56,6 +57,7 @@
                         <label for="No">No</label><br>
                 </span>
 </div>
+<input type="hidden" name="timestamp" value="<?php echo time(); ?>">
         <button type="submit">Purchase</button>
 </span>
 

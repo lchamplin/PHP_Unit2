@@ -53,12 +53,29 @@ function findCustomer($conn, $email) {
         }
 }
 
-function addOrder($conn, $custId, $productId, $qty, $price, $tax, $donation, $timestamp) {
-        $query = "insert into Orders (product_id, customer_id, quantity, price, tax, donation, timestamp) values (?,?,?,?,?,?,?)";
+function findOrder($conn, $custId, $productId, $timestamp) {
+        $query = "select * from Customer where customer_id = ? and product_id = ? and timestamp = ?";
         $stmt = $conn->prepare( $query );
-        $stmt->bind_param("iiidddi", $productId, $custId, $qty, $price, $tax, $donation, $timestamp);
+        $stmt->bind_param("iii", $custId, $productId, $timestamp);
         $stmt->execute();
-        $stmt->close();
+        $result = $stmt->get_result(); // get the mysqli result
+        if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                return $row;
+        }
+        else {
+                return 0;
+        }
+}
+
+function addOrder($conn, $custId, $productId, $qty, $price, $tax, $donation, $timestamp) {
+        if(findOrder($conm, $custId, $productId, $timestamp) != 0){
+                $query = "insert into Orders (product_id, customer_id, quantity, price, tax, donation, timestamp) values (?,?,?,?,?,?,?)";
+                $stmt = $conn->prepare( $query );
+                $stmt->bind_param("iiidddi", $productId, $custId, $qty, $price, $tax, $donation, $timestamp);
+                $stmt->execute();
+                $stmt->close();
+        }
 }
 
 function addCustomer($conn, $first, $last, $email) {
