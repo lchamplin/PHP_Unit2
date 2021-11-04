@@ -59,7 +59,7 @@ $customer = findCustomerById($conn, $row['customer_id']);
 $product = findProductById($conn, $row['product_id']);
 
 echo "<tr>";
-echo "<td>" . $customer['first name'] . $customer['last name'] . "</td>";
+echo "<td>" . $customer['first_name'] . $customer['last_name'] . "</td>";
 echo "<td>" . $product['product_name'] . "</td>";
 echo "<td>" . date("Y-m-d h:i:sa", $row['timestamp']) . "</td>";
 echo "<td>" . $row['quantity'] . "</td>";
