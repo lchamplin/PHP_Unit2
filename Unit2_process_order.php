@@ -49,14 +49,12 @@ if($_POST["donate"]){
 }
 
 if ($newCust != 0) {
-	$x = addOrder($conn, $newCust['id'], $_POST['product'], $_POST["quantity"], $price, 0.03, $donation, $timestamp);
-	debug_to_console($x);
+	addOrder($conn, $newCust['id'], $_POST['product'], $_POST["quantity"], $price, 0.03, $donation, $timestamp);
 }
 else{
 	addCustomer($conn, $_POST['fname'], $_POST['lname'], $_POST['email']);
 	$cust = findCustomer($conn, $_POST['email']);
-	$y = addOrder($conn, $cust['id'], $_POST['product'], $_POST["quantity"], $price, 0.03, $donation, $timestamp);
-	debug_to_console($y);
+	addOrder($conn, $cust['id'], $_POST['product'], $_POST["quantity"], $price, 0.03, $donation, $timestamp);
 }
 ?>
 

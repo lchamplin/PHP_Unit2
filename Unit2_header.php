@@ -18,5 +18,6 @@
                 <a href="Unit2_store.php">Candy</a>
                 <a href="Unit2_store.php">Cupcakes</a>
                 <a href="Unit2_store.php">Ice Cream</a>
+                <a id="admin" href="Unit2_admin.php">Admin</a>
         </div>
 </nav>

@@ -39,6 +39,17 @@ a{
         text-decoration: none;
         padding: 14px 16px;
 }
+
+.topnav #admin {
+        float: right;
+        display: block;
+        color: blue;
+        background-color: inherit;
+        text-align: center;
+        font-size: 15px;
+        text-decoration: none;
+        padding: 14px 16px;
+}
       
 .topnav a:hover {
         background-color: goldenrod;

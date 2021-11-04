@@ -52,5 +52,6 @@ a{
 #receipt{
         background-color: gold;
         border: 0.25vw red dashed;
-        width: fit-content;      
+        width: fit-content;    
+        padding: 2px;  
 }

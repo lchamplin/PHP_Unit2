@@ -93,4 +93,13 @@ function updateQuantity($conn, $productId, $qty) {
         $stmt->close();
 }
 
+function getCustomerTable($conn) {
+        $query = "select * from Customer";
+        $stmt = $conn->prepare( $query );
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+}
+
+
 ?> 
