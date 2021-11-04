@@ -31,9 +31,10 @@ $price = $product['price'];
 $subtotal = $price * $_POST["quantity"];
 $tax = $subtotal * 0.03;
 $tax_price = $subtotal + $tax;
-$donation = ceil($tax_price);
+$total = $tax_price;
 $timestamp = $_POST["timestamp"];
 $donation_text = "";
+$donation = 0.0;
 
 $newQty = $product['in_stock'] - $_POST["quantity"];
 if ($newQty < 0) { // ensure no negative amounts
@@ -45,16 +46,18 @@ debug_to_console($_POST);
 updateQuantity($conn, $_POST['product'], $newQty);
 
 if($_POST["donate"]){
-        $donation_text = "Total with donation: $" . $donation;
+	$donation = $total - $tax_price;
+        $donation_text = "Total with donation: $" . ($donation+$tax_price);
+	$total = ceil($tax_price);
 }
 
 if ($newCust != 0) {
-	addOrder($conn, $newCust['id'], $_POST['product'], $_POST["quantity"], $price, $tax, $donation, $timestamp);
+	addOrder($conn, $newCust['id'], $_POST['product'], $_POST["quantity"], $price, $tax, $donation, $total, $timestamp);
 }
 else{
 	addCustomer($conn, $_POST['fname'], $_POST['lname'], $_POST['email']);
 	$cust = findCustomer($conn, $_POST['email']);
-	addOrder($conn, $cust['id'], $_POST['product'], $_POST["quantity"], $price, $tax, $donation, $timestamp);
+	addOrder($conn, $cust['id'], $_POST['product'], $_POST["quantity"], $price, $tax, $donation, $total, $timestamp);
 }
 ?>
 

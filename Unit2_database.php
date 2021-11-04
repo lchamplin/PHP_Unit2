@@ -82,11 +82,11 @@ function findOrder($conn, $custId, $productId, $timestamp) {
         }
 }
 
-function addOrder($conn, $custId, $productId, $qty, $price, $tax, $donation, $timestamp) {
+function addOrder($conn, $custId, $productId, $qty, $price, $tax, $donation, $total, $timestamp) {
         if(! findOrder($conn, $custId, $productId, $timestamp)){
-                $query = "insert into Orders (product_id, customer_id, quantity, price, tax, donation, timestamp) values (?,?,?,?,?,?,?)";
+                $query = "insert into Orders (product_id, customer_id, quantity, price, tax, donation, total, timestamp) values (?,?,?,?,?,?,?,?)";
                 $stmt = $conn->prepare( $query );
-                $stmt->bind_param("iiidddi", $productId, $custId, $qty, $price, $tax, $donation, $timestamp);
+                $stmt->bind_param("iiidddi", $productId, $custId, $qty, $price, $tax, $donation, $total, $timestamp);
                 $stmt->execute();
                 $stmt->close();
         }

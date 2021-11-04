@@ -21,7 +21,7 @@ $conn = getConnection();
 $customers = getCustomerTable($conn);
 $orders = getOrdersTable($conn);
 $products = getProductTable($conn);
-
+echo "<br>";
 echo "<table border='1'>
 <tr>
 <th>First name</th>
@@ -39,6 +39,7 @@ echo "</tr>";
 }
 echo "</table>";
 
+echo "<br>";
 
 echo "<table border='1'>
 <tr>
@@ -54,23 +55,24 @@ echo "<table border='1'>
 
 while($row = mysqli_fetch_array($orders))
 {
+$customer = findCustomerById($conn, $row['customer_id']);
+$product = findProductById($conn, $row['product_id']);
+
 echo "<tr>";
-echo "<td>" . $row['customer_id'] . "</td>";
-echo "<td>" . $row['product_id'] . "</td>";
-echo "<td>" . $row['timestamp'] . "</td>";
+echo "<td>" . $customer['first name'] . $customer['last name'] . "</td>";
+echo "<td>" . $product['product_name'] . "</td>";
+echo "<td>" . date("Y-m-d h:i:sa", $row['timestamp']) . "</td>";
 echo "<td>" . $row['quantity'] . "</td>";
 echo "<td>" . $row['price'] . "</td>";
 echo "<td>" . $row['tax'] . "</td>";
-
-$donation = $row['donation'] - ($row['quantity'] * $row['price'] + $row['tax']);
-
-echo "<td>" . $donation . "</td>";
 echo "<td>" . $row['donation'] . "</td>";
+echo "<td>" . $row['total'] . "</td>";
 echo "</tr>";
 }
 echo "</table>";
 
 
+echo "<br>";
 echo "<table border='1'>
 <tr>
 <th>Product</th>
