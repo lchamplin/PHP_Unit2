@@ -33,19 +33,17 @@
    <fieldset class="product">
     <legend>Product</legend>
                 <br>
+   
                 <select id="product" name="product" required onchange="showImage()">
-                        <option value="" disabled selected hidden>Choose a product*</option>
-                        <?php $Product = getProducts(getConnection()); ?>
-                        <?php if ($Product): ?>
-                                <?php foreach($Product as $row): ?> 
-                                        <!-- data-image="<?= $row['image_name'] ?>" data-qty="<?= $row['in_stock'] ?>" <?= $row['id']?>   -->
-                                        <option value = 2> <?= $row['product_name'] ?> - <?= $row['price'] ?> </option>                             
-                                <?php endforeach?>
-                        <?php endif?>
-                        <!-- <option id="gummy_bears" value="Gummy Bears-5" onclick=showImage(value)>Gummy Bears - $5</option>
-                        <option id="chocolates" value="Chocolates-3">Chocolates - $3</option>
-                        <option id="caramels" value="Caramels-8">Caramels - $8</option> -->
-                </select>
+                <option disabled selected hidden>Choose a product *</option>
+                <?php $Product = getProducts(getConnection()); ?>
+                <?php if ($Product): ?>
+                        <?php foreach($Product as $row): ?>
+                                <option value = <?= $row['id']?> data-image="<?= $row['image_name'] ?>" data-qty="<?= $row['in_stock'] ?>" > <?= $row['product_name'] ?> - <?= $row['price'] ?> </option>
+                        <?php endforeach?>
+                <?php endif?>
+
+
                 <br>
                 Quantity: * <input type="number" name="quantity" min=1 max=100  value=1 required><br>
 </fieldset>
@@ -58,7 +56,7 @@
                 </span>
         <input type="hidden" name="timestamp" value="<?php echo time(); ?>" required>
 </div>
-        <button type="submit">Purchase</button>
+        <button id="submit" type="submit">Purchase</button>
 </span>
 
 </form>
@@ -82,13 +80,16 @@
                 if (stock == 0){
                         $('#stock_text').text("OUT OF STOCK");
                         $('#stock_text').css('color', 'red');
+                        $('#submit').prop("disabled",true);
                 }
                 else if (stock < 5){
                         $('#stock_text').text("Only "+stock+" left in stock!");
                         $('#stock_text').css('color', 'blue');
+                        $('#submit').prop("disabled",false);
                 }
                 else{
                         $('#stock_text').text("");
+                        $('#submit').prop("disabled",false);
                         }
         }
 </script>
