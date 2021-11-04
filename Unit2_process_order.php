@@ -48,7 +48,7 @@ if($_POST["donate"]){
         $donation_text = "Total with donation: $" . $donation;
 }
 
-if ($newCust) {
+if ($newCust != 0) {
 	$x = addOrder($conn, $newCust['id'], $_POST['product'], $_POST["quantity"], $price, 0.03, $donation, $timestamp);
 	debug_to_console($x);
 }

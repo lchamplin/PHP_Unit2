@@ -74,9 +74,7 @@ function addOrder($conn, $custId, $productId, $qty, $price, $tax, $donation, $ti
                 $stmt->bind_param("iiidddi", $productId, $custId, $qty, $price, $tax, $donation, $timestamp);
                 $stmt->execute();
                 $stmt->close();
-                return true;
         }
-        return false;
 }
 
 function addCustomer($conn, $first, $last, $email) {
