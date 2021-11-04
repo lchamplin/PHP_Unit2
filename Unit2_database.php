@@ -54,7 +54,7 @@ function findCustomer($conn, $email) {
 }
 
 function findOrder($conn, $custId, $productId, $timestamp) {
-        $query = "select * from Customer where customer_id = ? and product_id = ? and timestamp = ?";
+        $query = "select * from Order where customer_id = ? and product_id = ? and timestamp = ?";
         $stmt = $conn->prepare( $query );
         $stmt->bind_param("iii", $custId, $productId, $timestamp);
         $stmt->execute();

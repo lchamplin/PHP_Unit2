@@ -29,7 +29,7 @@ CREATE TABLE Orders (
     price decimal(6, 2),
     tax decimal(6, 2),
     donation decimal(6, 2),
-    timestamp bigint,
+    timestamp bigint unsigned,
     PRIMARY KEY (id)
 );
 
