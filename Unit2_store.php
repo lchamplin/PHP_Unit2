@@ -56,7 +56,7 @@
                         <input type="radio" id="css" name="donate" value=0 checked>
                         <label for="No">No</label><br>
                 </span>
-        <input type="hidden" name="timestamp" value="<?php echo time(); ?>">
+        <input type="hidden" name="timestamp" value="<?php echo time(); ?>" required>
 </div>
         <button type="submit">Purchase</button>
 </span>
